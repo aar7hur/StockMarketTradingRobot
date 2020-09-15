@@ -1,5 +1,5 @@
-#ifndef __MAIN_H
-#define __MAIN_H
-#include "UserInterface.h"
+#ifndef MAIN_HEADER_GUARD
+#define MAIN_HEADER_GUARD
+#include "userInterface.h"
 
 #endif /* __MAIN_H */

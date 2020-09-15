@@ -5,7 +5,7 @@ class MovingAverage{
 	private:
 		float average;
 	public:
-		MovingAverage(float *, int);
+		MovingAverage();
 		void setmovingAverage(float *, int);
 		float getAverage();
 		~MovingAverage();

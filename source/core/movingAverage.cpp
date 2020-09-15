@@ -1,4 +1,4 @@
-#include "movingAverage.h"
+#include "../include/movingAverage.h"
 
 /*******************************************************************************
  *	Função: movingAverage
@@ -11,11 +11,10 @@
  ******************************************************************************/
 void MovingAverage::setmovingAverage(float *priceCloseWeek, int period){
 
-	float aux, sum;
+	float sum;
 	sum = 0;
-	for(aux = period; aux > 0; aux--){
-		sum += *priceCloseWeek;
-		priceCloseWeek--;
+	for(int aux = 0; aux < period; aux++){
+		sum += priceCloseWeek[aux];
 	}
 	this->average = (sum)/period;
 }
@@ -24,5 +23,5 @@ float MovingAverage::getAverage(void){
 	return this->average;
 }
 
-MovingAverage::MovingAverage(float *priceCloseWeek, int period){}
+MovingAverage::MovingAverage(){}
 MovingAverage::~MovingAverage(){}

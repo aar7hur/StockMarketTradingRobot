@@ -3,6 +3,7 @@
 
 #include <gtk/gtk.h>
 #include "menu.h"
+#include "decision.h"
 #include "layout.h"
 #include <string>
 
@@ -16,8 +17,10 @@ enum Window
 
 /******************************************s
 *
-* Class used to create an user interface and
-* gets user input 
+* Classe usada para criar a interface com o 
+* usuário, receber os dados de entrada e 
+* utilizar classes auxiliares para fazer
+* os cálculos nessecários.
 *
 ******************************************/
 class UserInterface: public Menu, public Layout
@@ -29,6 +32,7 @@ class UserInterface: public Menu, public Layout
 		static void entry_submit(GtkWidget** entry, GtkWidget *widget);
 		static void destroy(GtkWidget *widget, gpointer data);
 		static gboolean update_progress_bar(GtkProgressBar* progress_bar);
+		static void printResult();
 	
 	protected:
 		void create_menu(void);

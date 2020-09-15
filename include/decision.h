@@ -6,45 +6,56 @@
 
 #include "readcsv.h"
 #include "movingAverage.h"
+#include "stochastic.h"
 
-class Decision{
+enum calculation
+{
+    WAITING_FOR_CALCULATION,
+    CALCULATION_IS_OVER,
+};
+
+ struct userData {
+    float stopLoss;
+    float trigger;
+    int target;
+    int qtdStocks;
+    std::string message;
+};
+
+class Decision
+{
 	private:
-		bool purchaseAction;
-        float userMoney;
-        struct userData {
-            float stopLoss;
-            float trigger;
-            float target;
-            float qtdStocks;
-            std::string message;
-        } outputUser;
-
-        struct dataRisk {
-			float highDaily;
-			float lowDaily;
-		};
-
-		struct dataForDecision {
-			float closeWeek;
-			float average_20;
-			float average_50;
-			float stochastic_8;
-            struct dataRisk;
-		} decisionData;
-
+	bool purchaseAction;
+    float userMoney;
+    enum calculation calculation_process;
+	struct dataForDecision {
+		float closeWeek;
+		float average_20;
+		float average_50;
+		float stochastic_8;
+        float highDaily;
+		float lowDaily;
+	} decisionData;
+    
+    struct userData outputUser;
     MovingAverage movingAverage;
+    Stochastic stochastic;
     bool isPurchaseAction(void);
     bool isSaleAction(void);
-    void managmentRisk(void);
+    void managementRisk(void);
+    void populateStochastic(std::string ativo);
+    void populateAverage(std::string ativo);
+    void populateCloseWeek(std::string ativo);
 
 	public:
-        float getUserMoney(void);
-        void setUserMoney(float);
-		void populateData(std::string, std::string);
-        void doDecision(void);
-        userData getUserData(void);
-		Decision();
-		~Decision();	
+    enum calculation calculation_progress;
+    float getUserMoney(void);
+    void setUserMoney(float);
+	void populateData(std::string);
+    calculation doDecision(void);
+    userData getUserData(void);
+	Decision();
+	~Decision();	
 };
 
 #endif
